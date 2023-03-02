@@ -1,3 +1,4 @@
+// modal-description         (text)
 // modal-integration-list    (list container)
 // modal-feature-list        (list container)
 // basic-price               (text)
@@ -5,6 +6,7 @@
 // enterprise-price          (text)
 // btn-show-all              (btn)
 // btn-sort                  (btn)
+// btn-accuracy              (btn)
 
 const loadAIs = async (index) => {
   const url = `https://openapi.programming-hero.com/api/ai/tools`;
@@ -12,7 +14,7 @@ const loadAIs = async (index) => {
   try {
     const res = await fetch(url);
     const data = await res.json();
-    console.log(data.data.tools);
+    // console.log(data.data.tools);
     displayAIs(data.data.tools, index);
   } catch (error) {
     console.log(error);
@@ -38,14 +40,14 @@ const displayAIs = (tools, index) => {
   tools.forEach((tool) => {
     const aiDiv = document.createElement("div");
 
-    // Added the feaatues here into an array then joined all without comma
+    // Added the features here into an array then joined all without comma
     const featuresArr = [];
     tool.features.forEach((feature) => {
       const str = `<li>${feature}</li>`;
       featuresArr.push(str);
     });
     const features = featuresArr.join("");
-    console.log(features);
+    // console.log(features);
 
     aiDiv.innerHTML = `
     <div
@@ -87,9 +89,11 @@ const displayAIs = (tools, index) => {
 
                 <!-- Modal Button -->
                 <button
+                  
                   data-modal-target="medium-modal"
                   data-modal-toggle="medium-modal"
                   data-modal-placement="center-center"
+                  onclick="loadAIdetails('${tool.id}')"
                   class="bg-[#FEF7F7] rounded-full p-4"
                 >
                   <svg
@@ -135,6 +139,18 @@ const toggleSpinner = (isLoading) => {
   }
 };
 
-const loadAIdetails = (id) => {};
+const loadAIdetails = async (id) => {
+  const url = `https://openapi.programming-hero.com/api/ai/tool/${id}`;
+  console.log(url);
+  const res = await fetch(url);
+  const data = await res.json();
+  displayAIdetails(data.data);
+};
+
+const displayAIdetails = (data) => {
+  // console.log(data);
+  const aiDescription = document.getElementById("modal-description");
+  aiDescription.innerText = data.description;
+};
 
 loadAIs(6);

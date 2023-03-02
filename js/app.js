@@ -99,7 +99,7 @@ const displayAIs = (tools, index) => {
                   data-modal-toggle="medium-modal"
                   data-modal-placement="center-center"
                   onclick="loadAIdetails('${tool.id}')"
-                  class="bg-[#FEF7F7] rounded-full p-4"
+                  class="bg-[#FEF7F7] block rounded-full p-4"
                 >
                   <svg
                     aria-hidden="true"
@@ -125,10 +125,8 @@ const displayAIs = (tools, index) => {
 
   // stop spinner
 
-  setTimeout(() => {
-    toggleSpinner(false);
-    cardSection.classList.remove("hidden");
-  }, 600);
+  toggleSpinner(false);
+  cardSection.classList.remove("hidden");
 };
 
 document.getElementById("btn-show-all").addEventListener("click", function () {
@@ -145,10 +143,14 @@ const toggleSpinner = (isLoading) => {
 };
 
 const loadAIdetails = async (id) => {
+  const modal = document.getElementById("medium-modal");
+  modal.classList.remove("hidden");
+
   const url = `https://openapi.programming-hero.com/api/ai/tool/${id}`;
   console.log(url);
   const res = await fetch(url);
   const data = await res.json();
+  // console.log(data.data);
   displayAIdetails(data.data);
 };
 
@@ -156,6 +158,21 @@ const displayAIdetails = (data) => {
   // console.log(data);
   const aiDescription = document.getElementById("modal-description");
   aiDescription.innerText = data.description;
+
+  const accuracyDiv = document.getElementById("btn-accuracy");
+  if (data.accuracy.score) {
+    accuracyDiv.innerText = data.accuracy.score * 100 + "% accuracy";
+    accuracyDiv.classList.remove("hidden");
+  } else {
+    accuracyDiv.classList.add("hidden");
+  }
 };
+
+// document
+//   .getElementById("btn-modal-close")
+//   .addEventListener("click", function () {
+//     const modal = document.getElementById("medium-modal");
+//     modal.classList.add("hidden");
+//   });
 
 loadAIs(6);

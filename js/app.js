@@ -21,11 +21,12 @@ const loadAIs = async (index) => {
 
 const displayAIs = (tools, index) => {
   const aiContainer = document.getElementById("ais-container");
+  const cardSection = document.getElementById("card-section");
   const showAllButton = document.getElementById("btn-show-all");
 
   aiContainer.innerHTML = "";
 
-  console.log(index, tools.length);
+  // console.log(index, tools.length);
 
   if (tools && index < tools.length) {
     tools = tools.slice(0, index);
@@ -112,10 +113,28 @@ const displayAIs = (tools, index) => {
 
     aiContainer.appendChild(aiDiv);
   });
+
+  // stop spinner
+
+  setTimeout(() => {
+    toggleSpinner(false);
+    cardSection.classList.remove("hidden");
+  }, 600);
 };
 
 document.getElementById("btn-show-all").addEventListener("click", function () {
   loadAIs();
 });
+
+const toggleSpinner = (isLoading) => {
+  const loaderSection = document.getElementById("loader");
+  if (isLoading) {
+    loaderSection.classList.remove("hidden");
+  } else {
+    loaderSection.classList.add("hidden");
+  }
+};
+
+const loadAIdetails = (id) => {};
 
 loadAIs(6);

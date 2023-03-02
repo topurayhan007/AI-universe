@@ -21,6 +21,17 @@ const loadAIs = async (index) => {
   }
 };
 
+const returnFeatureList = (data) => {
+  // Added the features here into an array then joined all without comma
+  const featuresArr = [];
+  data.forEach((feature) => {
+    const str = `<li>${feature}</li>`;
+    featuresArr.push(str);
+  });
+  const features = featuresArr.join("");
+  return features;
+};
+
 const displayAIs = (tools, index) => {
   const aiContainer = document.getElementById("ais-container");
   const cardSection = document.getElementById("card-section");
@@ -40,13 +51,7 @@ const displayAIs = (tools, index) => {
   tools.forEach((tool) => {
     const aiDiv = document.createElement("div");
 
-    // Added the features here into an array then joined all without comma
-    const featuresArr = [];
-    tool.features.forEach((feature) => {
-      const str = `<li>${feature}</li>`;
-      featuresArr.push(str);
-    });
-    const features = featuresArr.join("");
+    const features = returnFeatureList(tool.features);
     // console.log(features);
 
     aiDiv.innerHTML = `

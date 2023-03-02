@@ -147,7 +147,7 @@ const loadAIdetails = async (id) => {
   modal.classList.remove("hidden");
 
   const url = `https://openapi.programming-hero.com/api/ai/tool/${id}`;
-  console.log(url);
+  // console.log(url);
   const res = await fetch(url);
   const data = await res.json();
   // console.log(data.data);
@@ -159,6 +159,24 @@ const displayAIdetails = (data) => {
   const aiDescription = document.getElementById("modal-description");
   aiDescription.innerText = data.description;
 
+  // Pricing
+  const basic = document.getElementById("basic-price");
+  // Features
+  const featureList = document.getElementById("modal-feature-list");
+  const featureArr = [];
+  for (feature in data.features) {
+    const str = `<li>${data.features[feature].feature_name}</li>`;
+    featureArr.push(str);
+  }
+  const features = featureArr.join("");
+  featureList.innerHTML = features;
+
+  // Integrations
+  const integrationList = document.getElementById("modal-integration-list");
+  const integrations = returnFeatureList(data.integrations);
+  integrationList.innerHTML = integrations;
+
+  // Accuracy
   const accuracyDiv = document.getElementById("btn-accuracy");
   if (data.accuracy.score) {
     accuracyDiv.innerText = data.accuracy.score * 100 + "% accuracy";

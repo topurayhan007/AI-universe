@@ -1,0 +1,7 @@
+// modal-integration-list    (list container)
+// modal-feature-list        (list container)
+// basic-price               (text)
+// pro-price                 (text)
+// enterprise-price          (text)
+// btn-show-all              (btn)
+// btn-sort                  (btn)

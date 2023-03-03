@@ -162,27 +162,27 @@ const displayAIdetails = (data) => {
   // Pricing
   const basic = document.getElementById("basic-price");
   basic.innerText = `${
+    data.pricing === null ||
     data.pricing[0].price === "No cost" ||
-    data.pricing[0].price === "0" ||
-    data.pricing === null
+    data.pricing[0].price === "0"
       ? "Free of Cost/"
       : data.pricing[0].price.replace("/", "/\n")
   }`;
 
   const pro = document.getElementById("pro-price");
   pro.innerText = `${
+    data.pricing === null ||
     data.pricing[1].price === "No cost" ||
-    data.pricing[1].price === "0" ||
-    data.pricing === null
+    data.pricing[1].price === "0"
       ? "Free of Cost/"
       : data.pricing[1].price.replace("/", "/\n")
   }`;
 
   const enterprise = document.getElementById("enterprise-price");
   enterprise.innerText = `${
+    data.pricing === null ||
     data.pricing[2].price === "No cost" ||
-    data.pricing[2].price === "0" ||
-    data.pricing === null
+    data.pricing[2].price === "0"
       ? "Free of Cost/"
       : data.pricing[2].price.slice(0, 10).replace(" ", "\n")
   }`;
@@ -199,8 +199,16 @@ const displayAIdetails = (data) => {
 
   // Integrations
   const integrationList = document.getElementById("modal-integration-list");
-  const integrations = returnFeatureList(data.integrations);
+  const integrations = `${
+    data.integrations === null
+      ? "No Data Found"
+      : returnFeatureList(data.integrations)
+  }`;
   integrationList.innerHTML = integrations;
+
+  // Image
+  const image = document.getElementById("modal-image");
+  image.src = data.image_link[0];
 
   // Accuracy
   const accuracyDiv = document.getElementById("btn-accuracy");

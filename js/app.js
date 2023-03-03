@@ -10,11 +10,14 @@
 
 const toggleSpinner = (isLoading) => {
   const loaderSection = document.getElementById("loader");
+  const cardSection = document.getElementById("card-section");
 
   if (isLoading) {
     loaderSection.classList.remove("hidden");
+    cardSection.classList.add("hidden");
   } else {
     loaderSection.classList.add("hidden");
+    cardSection.classList.remove("hidden");
   }
 };
 
@@ -50,7 +53,6 @@ const returnFeatureList = (data) => {
 
 const displayAIs = (tools, index) => {
   const aiContainer = document.getElementById("ais-container");
-  const cardSection = document.getElementById("card-section");
   const showAllButton = document.getElementById("btn-show-all");
 
   aiContainer.innerHTML = "";
@@ -138,13 +140,6 @@ const displayAIs = (tools, index) => {
 
     aiContainer.appendChild(aiDiv);
   });
-
-  // stop spinner
-
-  setTimeout(() => {
-    toggleSpinner(false);
-    cardSection.classList.remove("hidden");
-  }, 2500);
 };
 
 document.getElementById("btn-show-all").addEventListener("click", function () {

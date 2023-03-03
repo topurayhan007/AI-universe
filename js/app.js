@@ -161,6 +161,32 @@ const displayAIdetails = (data) => {
 
   // Pricing
   const basic = document.getElementById("basic-price");
+  basic.innerText = `${
+    data.pricing[0].price === "No cost" ||
+    data.pricing[0].price === "0" ||
+    data.pricing === null
+      ? "Free of Cost/"
+      : data.pricing[0].price.replace("/", "/\n")
+  }`;
+
+  const pro = document.getElementById("pro-price");
+  pro.innerText = `${
+    data.pricing[1].price === "No cost" ||
+    data.pricing[1].price === "0" ||
+    data.pricing === null
+      ? "Free of Cost/"
+      : data.pricing[1].price.replace("/", "/\n")
+  }`;
+
+  const enterprise = document.getElementById("enterprise-price");
+  enterprise.innerText = `${
+    data.pricing[2].price === "No cost" ||
+    data.pricing[2].price === "0" ||
+    data.pricing === null
+      ? "Free of Cost/"
+      : data.pricing[2].price.slice(0, 10).replace(" ", "\n")
+  }`;
+
   // Features
   const featureList = document.getElementById("modal-feature-list");
   const featureArr = [];

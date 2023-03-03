@@ -8,13 +8,19 @@
 // btn-sort                  (btn)
 // btn-accuracy              (btn)
 
-const loadAIs = async (index) => {
+const loadAIs = async (sort, index) => {
   const url = `https://openapi.programming-hero.com/api/ai/tools`;
   // console.log("asdsa", url);
   try {
     const res = await fetch(url);
     const data = await res.json();
     // console.log(data.data.tools);
+    if (sort) {
+      data.data.tools.sort(
+        (date1, date2) =>
+          new Date(date1.published_in) - new Date(date2.published_in)
+      );
+    }
     displayAIs(data.data.tools, index);
   } catch (error) {
     console.log(error);
@@ -130,7 +136,7 @@ const displayAIs = (tools, index) => {
 };
 
 document.getElementById("btn-show-all").addEventListener("click", function () {
-  loadAIs();
+  loadAIs(false);
 });
 
 const toggleSpinner = (isLoading) => {
@@ -220,6 +226,10 @@ const displayAIdetails = (data) => {
   }
 };
 
+document.getElementById("btn-sort").addEventListener("click", function () {
+  loadAIs(true);
+});
+
 // document
 //   .getElementById("btn-modal-close")
 //   .addEventListener("click", function () {
@@ -227,4 +237,4 @@ const displayAIdetails = (data) => {
 //     modal.classList.add("hidden");
 //   });
 
-loadAIs(6);
+loadAIs(false, 6);

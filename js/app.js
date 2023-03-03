@@ -136,7 +136,12 @@ const displayAIs = (tools, index) => {
 };
 
 document.getElementById("btn-show-all").addEventListener("click", function () {
-  loadAIs(false);
+  const btn = document.getElementById("btn-sort");
+  if (btn.dataset.status === "true") {
+    loadAIs(true);
+  } else {
+    loadAIs(false);
+  }
 });
 
 const toggleSpinner = (isLoading) => {
@@ -227,7 +232,9 @@ const displayAIdetails = (data) => {
 };
 
 document.getElementById("btn-sort").addEventListener("click", function () {
-  loadAIs(true);
+  const btn = document.getElementById("btn-sort");
+  btn.dataset.status = "true";
+  loadAIs(true, 6);
 });
 
 // document

@@ -237,11 +237,11 @@ document.getElementById("btn-sort").addEventListener("click", function () {
   loadAIs(true, 6);
 });
 
-// document
-//   .getElementById("btn-modal-close")
-//   .addEventListener("click", function () {
-//     const modal = document.getElementById("medium-modal");
-//     modal.classList.add("hidden");
-//   });
+document
+  .getElementById("btn-modal-close")
+  .addEventListener("click", function () {
+    const modal = document.getElementById("medium-modal");
+    modal.classList.add("hidden");
+  });
 
 loadAIs(false, 6);

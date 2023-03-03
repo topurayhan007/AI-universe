@@ -232,6 +232,23 @@ const displayAIdetails = (data) => {
   } else {
     accuracyDiv.classList.add("hidden");
   }
+
+  // Input Output examples
+  const input = document.getElementById("input-question");
+  // console.log(data.input_output_examples[0].input);
+  input.innerText = `${
+    data.input_output_examples === null
+      ? "Can you give any example?"
+      : data.input_output_examples[1].input
+  }`;
+
+  const output = document.getElementById("output-answer");
+  // console.log(data.input_output_examples[0].input);
+  output.innerText = `${
+    data.input_output_examples === null
+      ? "No! Not Yet! Take a break!!!"
+      : data.input_output_examples[1].output
+  }`;
 };
 
 document.getElementById("btn-sort").addEventListener("click", function () {

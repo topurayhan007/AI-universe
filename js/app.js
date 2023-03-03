@@ -8,6 +8,16 @@
 // btn-sort                  (btn)
 // btn-accuracy              (btn)
 
+const toggleSpinner = (isLoading) => {
+  const loaderSection = document.getElementById("loader");
+
+  if (isLoading) {
+    loaderSection.classList.remove("hidden");
+  } else {
+    loaderSection.classList.add("hidden");
+  }
+};
+
 const loadAIs = async (sort, index) => {
   const url = `https://openapi.programming-hero.com/api/ai/tools`;
   // console.log("asdsa", url);
@@ -131,8 +141,10 @@ const displayAIs = (tools, index) => {
 
   // stop spinner
 
-  toggleSpinner(false);
-  cardSection.classList.remove("hidden");
+  setTimeout(() => {
+    toggleSpinner(false);
+    cardSection.classList.remove("hidden");
+  }, 2500);
 };
 
 document.getElementById("btn-show-all").addEventListener("click", function () {
@@ -143,15 +155,6 @@ document.getElementById("btn-show-all").addEventListener("click", function () {
     loadAIs(false);
   }
 });
-
-const toggleSpinner = (isLoading) => {
-  const loaderSection = document.getElementById("loader");
-  if (isLoading) {
-    loaderSection.classList.remove("hidden");
-  } else {
-    loaderSection.classList.add("hidden");
-  }
-};
 
 const loadAIdetails = async (id) => {
   const modal = document.getElementById("medium-modal");

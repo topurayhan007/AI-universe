@@ -113,9 +113,8 @@ const displayAIs = (tools, index) => {
                 <!-- Modal Button -->
                 <button
                   
-                  data-modal-target="medium-modal"
-                  data-modal-toggle="medium-modal"
-                  data-modal-placement="center-center"
+                  
+                  
                   onclick="loadAIdetails('${tool.id}')"
                   class="bg-[#FEF7F7] block rounded-full p-4"
                 >
@@ -152,7 +151,7 @@ document.getElementById("btn-show-all").addEventListener("click", function () {
 });
 
 const loadAIdetails = async (id) => {
-  const modal = document.getElementById("medium-modal");
+  const modal = document.getElementById("my-modal");
   modal.classList.remove("hidden");
 
   const url = `https://openapi.programming-hero.com/api/ai/tool/${id}`;
@@ -255,7 +254,7 @@ document.getElementById("btn-sort").addEventListener("click", function () {
 document
   .getElementById("btn-modal-close")
   .addEventListener("click", function () {
-    const modal = document.getElementById("medium-modal");
+    const modal = document.getElementById("my-modal");
     modal.classList.add("hidden");
   });
 

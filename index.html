@@ -71,6 +71,7 @@
         <span class="sr-only">Loading...</span>
       </div>
     </div>
+
     <!-- Main Section -->
     <main>
       <!-- Cards Section -->
@@ -101,17 +102,17 @@
       <!-- ============================================================================================= -->
 
       <div
-        id="medium-modal"
-        data-modal-backdrop="static"
+        id="my-modal"
         tabindex="-1"
-        aria-hidden="true"
-        class="fixed left-0 top-0 flex items-center justify-center z-50 w-full bg-gray-900 bg-opacity-75 p-4 hidden overflow-x-hidden overflow-y-auto md:overflow-y-hidden md:inset-0 h-screen"
+        class="fixed flex items-center justify-center z-50 w-full bg-gray-900 bg-opacity-75 p-4 hidden overflow-x-hidden overflow-y-auto md:overflow-y-hidden inset-0 min-h-screen"
       >
         <div
           class="relative w-full h-full lg:w-max mx-auto text-center md:h-auto"
         >
           <!-- Modal content -->
-          <div class="relative bg-white rounded-xl shadow">
+          <div
+            class="absolute lg:fixed bg-white w-full lg:w-3/4 transform lg:top-1/2 left-1/2 -translate-x-1/2 -translate-y-0 lg:-translate-y-1/2 rounded-xl shadow"
+          >
             <!-- Modal header -->
 
             <div class="relative rounded-t">
@@ -119,7 +120,6 @@
                 type="button"
                 id="btn-modal-close"
                 class="absolute -top-[0.5rem] -right-[0.5rem] text-gray-400 bg-[#EB5757] rounded-full text-sm p-1.5 ml-auto inline-flex items-center"
-                data-modal-hide="medium-modal"
               >
                 <svg
                   aria-hidden="true"
@@ -144,7 +144,7 @@
               <!-- Modal Card 1 -->
 
               <div
-                class="max-w-sm bg-[#FEF7F7] border border-[#EB5757] border-[0.1rem] rounded-lg shadow p-5"
+                class="w-full bg-[#FEF7F7] border border-[#EB5757] border-[0.1rem] rounded-lg shadow p-5"
               >
                 <h5
                   id="modal-description"
@@ -221,12 +221,12 @@
               <!-- Modal Card 2 -->
 
               <div
-                class="max-w-sm bg-white h-full border border-gray-200 rounded-lg shadow p-4"
+                class="w-full bg-white h-full border border-gray-200 rounded-lg shadow p-4"
               >
                 <div class="relative md:h-3/5">
                   <img
                     id="modal-image"
-                    class="rounded-lg h-full object-cover"
+                    class="rounded-lg h-full w-full object-cover"
                     src="https://img.olhardigital.com.br/wp-content/uploads/2023/01/chatgpt_assistente.jpg"
                     alt=""
                   />

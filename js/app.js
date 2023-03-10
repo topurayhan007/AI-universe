@@ -151,8 +151,8 @@ document.getElementById("btn-show-all").addEventListener("click", function () {
 });
 
 const loadAIdetails = async (id) => {
-  const modal = document.getElementById("my-modal");
-  modal.classList.remove("hidden");
+  // Open Modal
+  openModal();
 
   const url = `https://openapi.programming-hero.com/api/ai/tool/${id}`;
   // console.log(url);
@@ -254,8 +254,21 @@ document.getElementById("btn-sort").addEventListener("click", function () {
 document
   .getElementById("btn-modal-close")
   .addEventListener("click", function () {
-    const modal = document.getElementById("my-modal");
-    modal.classList.add("hidden");
+    closeModal();
   });
 
+const openModal = () => {
+  const modal = document.getElementById("my-modal");
+  const body = document.body;
+  modal.classList.remove("hidden");
+  body.style.height = "100vh";
+  body.classList.add("overflow-y-hidden");
+};
+const closeModal = () => {
+  const modal = document.getElementById("my-modal");
+  const body = document.body;
+  modal.classList.add("hidden");
+  body.style.height = "auto";
+  body.classList.remove("overflow-y-hidden");
+};
 loadAIs(false, 6);
